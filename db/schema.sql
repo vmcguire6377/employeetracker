@@ -9,13 +9,13 @@
 CREATE TABLE department (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     department_name VARCHAR(30),
-    department_id SMALLINT
+    department_id SMALLINT NOT NULL
 
 );
 CREATE TABLE roles (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    salary_amt DECIMAL,
+    salary_amt INT,
     department_id SMALLINT
 );
 CREATE TABLE employees (
@@ -24,5 +24,5 @@ CREATE TABLE employees (
     last_name VARCHAR(30),
     role_id SMALLINT,
     manager_id SMALLINT,
-    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE SET NULL
+    
     );
