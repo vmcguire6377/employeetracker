@@ -2,9 +2,9 @@ const mysql = require('mysql2');
 //const inputCheck = require('./utils/inputCheck');
 const inquirer = require('inquirer');
 
-require("console.table");
+//require("console.table");
 
-console.table(data, columns);
+//console.table(data, columns);
 //connect to database
 const db = mysql.createConnection(
     {
@@ -220,6 +220,8 @@ function addDepartment() {
         )
 
 }
+
+
 
 /*function viewRoles(view) {
     const sql = 'SELECT * FROM ${view}';
