@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/vmcguire6377/employeetracker#readme",
   "dependencies": {
+    "console-table": "^0.1.2",
     "express": "^4.17.1",
     "inquirer": "^8.1.0",
     "mysql2": "^2.2.5"
