@@ -20,36 +20,36 @@ const db = mysql.createConnection(
 );
 console.log(`WELCOME to EMPLOYEE DB! What would you like to do?`);
 const promptOptions = {
-    viewEmployees: " View Employees",
+    viewEmployee: " View Employee",
     viewRoles: "View Roles",
     viewDepartment: "View Department",
-    addEmployees: "Add Employees",
+    addEmployee: "Add Employee",
     addRoles: "Add Roles",
     addDepartment: "Add Department",
     exit: "Exit"
 };
 
 function prompt() {
-    inquirer.prompt({
+    inquirer.prompt([{
         type: 'list',
         name: 'action',
         message: 'Please select your option',
         choices: [
-            promptOptions.viewEmployees,
+            promptOptions.viewEmployee,
             promptOptions.viewRoles,
             promptOptions.viewDepartment,
-            promptOptions.addEmployees,
+            promptOptions.addEmployee,
             promptOptions.addRoles,
             promptOptions.addDepartment,
             //promptOptions.updateEmployees,
             promptOptions.exit
         ]
-    })
+    }])
         .then(results => {
             console.log('results', results);
             switch (results.action) {
-                case promptOptions.viewEmployees:
-                    viewEmployees();
+                case promptOptions.viewEmployee:
+                    viewEmployee();
                     break;
                 case promptOptions.viewroles:
                     viewRoles();
@@ -57,8 +57,8 @@ function prompt() {
                 case promptOptions.viewDepartment:
                     viewDepartment();
                     break;
-                case promptOptions.addEmployees:
-                    addEmployees();
+                case promptOptions.addEmployee:
+                    addEmployee();
                     break;
                 case promptOptions.addRoles:
                     addRoles();
@@ -76,29 +76,44 @@ function prompt() {
             }
         });
 }
-/*function viewEmployees() {
-    const query = db.query(
-        "SELECT * FROM employees ?",
-        res,
+function viewEmployee() {
+    db.query(
+        "SELECT * FROM employee ",
+        
         function (err, res) {
             if (err) throw err;
-            console.log("Your employee has been added to EmployeeDB!\n");
+            console.table(res);
           prompt();  
         }
     )
-}*/
+}
 
-//gitbash cannot find console-table, so at this point i can't view any tables.
+
 //add function for view roles
 function viewRoles() {
-    db.query("SELECT roles.*, department.name FROM roles LEFT JOIN department ON department.id = roles.department_id", function (err, res) {
+    db.query(
+        "SELECT * FROM roles",
+     function (err, res) {
         if (err) throw err;
         console.table(res);
         prompt();
-    }
-    )}
+      }
+    )
+}
+
+//add function for view department
+function viewDepartment() {
+    db.query(
+        "SELECT * FROM department",
+     function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        prompt();
+      }
+    )
+}
 //addEmployee function
-function addEmployees() {
+function addEmployee() {
     console.log("Add a new employee.\n");
     return inquirer
         .prompt([
@@ -116,7 +131,7 @@ function addEmployees() {
                 type: "list",
                 message: "What is the employee's role?",
                 name: "role_id",
-                choices: [1, 2, 3]
+                choices: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             },
             {
                 type: "list",
@@ -129,7 +144,7 @@ function addEmployees() {
 
         .then(function (res) {
             db.query(
-                "INSERT INTO employees SET ?",
+                "INSERT INTO employee SET ?",
                 res,
                 function (err, res) {
                     if (err) throw err;
@@ -202,8 +217,9 @@ function addDepartment() {
                 type: "input",
                 message: "What is the department id?",
                 name: "department_id",
-            }
-          
+            },
+
+
         ])
         .then(function (res) {
             db.query(

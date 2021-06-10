@@ -15,14 +15,14 @@ CREATE TABLE department (
 CREATE TABLE roles (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    salary_amt INT,
+    salary_amt DECIMAL,
     department_id SMALLINT
 );
-CREATE TABLE employees (
+CREATE TABLE employee (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     role_id SMALLINT,
     manager_id SMALLINT,
-    
+    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE SET NULL
     );

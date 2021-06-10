@@ -24,4 +24,4 @@ INSERT INTO employees (
     VALUES
     ('Chris', 'Cornell','1','1'),
     ('Lane', 'Staley', '2', '2'),
-    ('Harry', 'Styles','3','3');
+    ('Harry', 'Styles', '3','3');
